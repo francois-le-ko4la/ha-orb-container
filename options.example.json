@@ -1,0 +1,10 @@
+{
+  "mqtt_push": true,
+  "mqtt_host": "192.168.1.10",
+  "mqtt_port": 1883,
+  "mqtt_user": "orb",
+  "mqtt_password": "change-me",
+  "mqtt_frequency": 30,
+  "mqtt_debug": false,
+  "ephemeral_mode": false
+}

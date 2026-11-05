@@ -1,0 +1,18 @@
+services:
+  orb-sensor:
+    image: orbforge/orb-ha:latest
+    container_name: orb-sensor
+    hostname: orb-sensor # name shown in the Orb app
+    restart: unless-stopped
+    environment:
+      - MQTT_PUSH=true
+      - MQTT_HOST=192.168.1.10 # your MQTT broker
+      - MQTT_PORT=1883
+      - MQTT_USER=orb
+      - MQTT_PASS=${ORB_MQTT_PASS} # set in .env
+      - MQTT_PAUSE=30 # seconds between two publications
+      # - ORB_EPHEMERAL_MODE=1 # no disk writes (SD cards); stats are lost on restart
+    volumes:
+      - ./config:/root/.config/orb # Orb identity and link to your account
+      - ./entrypoint.sh:/app/entrypoint.sh:ro
+      - ./mqtt.sh:/app/mqtt.sh:ro
